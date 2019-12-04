@@ -8,7 +8,7 @@ const User = (props) => {
         return null
     }
 
-    console.log(props.user)
+    //console.log(props.user)
 
     const numberOfBlogs = props.user.blogs.map(blog => blog.title)
 
@@ -32,5 +32,4 @@ const User = (props) => {
     )
 }
 
-export default User
-// export default withRouter(User)
+export default withRouter(User)
