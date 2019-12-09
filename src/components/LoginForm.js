@@ -42,7 +42,7 @@ const LoginForm = (props) => {
               <label>Password</label>
               <input id ='idPassword' type='password' name='password' placeholder='Password' />
             </Form.Field>
-            <Button primary type="submit">Login</Button>      
+            <Button primary type="submit">Login</Button><span style={{'marginLeft': '1rem'}}>Want to try this application? Login with these: username: <strong>test_user</strong>, password: <strong>bigsecret</strong></span>
         </Form>
       </Container>
     )
