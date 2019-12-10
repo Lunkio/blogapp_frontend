@@ -23,7 +23,7 @@ const BlogsForm = (props) => {
             <div style={showWhenVisible}>
                 <h2>Create new</h2>
                 <CreateForm blogs={props.blogs} user={props.user} />
-                <Button style={{'marginTop': '1rem'}} negative onClick={() => setBlogFormVisible(false)}>Cancel</Button>
+                <Button style={{'marginTop': '1rem'}} negative onClick={() => setBlogFormVisible(false)}>Close</Button>
                 <br/>
             </div>
             <h3>Blogs:</h3>
