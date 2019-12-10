@@ -6,6 +6,7 @@ import { addLike, addComment, removeBlog } from '../reducers/blogReducer'
 import { compose } from 'redux'
 
 const SingleBlog = (props) => {
+    console.log('props.blog', props.blog)
 
     if (props.blog === undefined) {
         return null
@@ -49,9 +50,7 @@ const SingleBlog = (props) => {
         event.preventDefault()
 
         const comment = event.target.newComment.value
-
         props.addComment(props.blog.id, comment)
-
         event.target.newComment.value = ''
     }
 
