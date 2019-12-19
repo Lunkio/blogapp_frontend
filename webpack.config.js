@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 const config = (env, argv) => {
 
-    const backend_url = 'http://localhost:3003'
+    const backend_url = 'http://localhost:3001'
 
     return {
         entry: ['@babel/polyfill', './src/index.js'],

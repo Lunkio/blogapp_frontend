@@ -6,6 +6,7 @@ import { setNotification } from '../reducers/notificationReducer'
 import { addBlog } from '../reducers/blogReducer'
 
 const CreateForm = (props) => {
+  //console.log('props', props)
 
   blogService.setToken(props.user.token)
 
@@ -15,6 +16,12 @@ const CreateForm = (props) => {
     const title = event.target.title.value
     const author = event.target.author.value
     const url = event.target.url.value
+
+    if (title === '' || author === '' || url === '') {
+      props.setNotification('Please fill in all the fields', 5)
+      return
+    }
+
     const newBlog = {
       title: title,
       author: author,
@@ -34,15 +41,15 @@ const CreateForm = (props) => {
   return (
       <Form onSubmit={handleBlogCreation}>
         <Form.Field>
-          <label>Title:</label>
+          <label className='title'>Title:</label>
           <input id='idTitle' name="title" placeholder='Title' />
         </Form.Field>
         <Form.Field>
-          <label>Author:</label>
+          <label className='author'>Author:</label>
           <input id='idAuthor' name="author" placeholder='Author' />
         </Form.Field>
         <Form.Field>
-          <label>Url:</label>
+          <label className='url'>Url:</label>
           <input id='idUrl' name="url" placeholder='Url' />
         </Form.Field>
         <Button primary id='idButton' type="submit">Add new blog</Button>

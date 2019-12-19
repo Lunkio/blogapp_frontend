@@ -1,22 +1,30 @@
-// import React from 'react'
-// import '@testing-library/jest-dom/extend-expect'
-// import { render, cleanup } from '@testing-library/react'
-// import User from './User'
+import React from 'react'
+import { shallow } from 'enzyme'
+import User from './User'
+import { userWithoutBlogs, userWithTwoBlogs } from '../utils/test_users'
 
-// afterEach(cleanup)
+describe('User -component', () => {
 
-// it('renders content', () => {
-//     const user = {
-//         blogs: [],
-//         name: 'Test User',
-//         username: 'tester'
-//     }
-    
-//     const component = render(
-//         <User user={user} />
-//     )
+    it('should show "Added blogs" -text', () => {
+        const wrapper = shallow(<User.WrappedComponent user={userWithTwoBlogs} />)
+        const text = wrapper.find('div p').text()
+        expect(text).toEqual('Added Blogs:')
+    })
 
-//     expect(component.container).toHaveTextContent(
-//         'Test User'
-//     )
-// })
+    it('should show two blogs if user added two blogs', () => {
+        const wrapper = shallow(<User.WrappedComponent user={userWithTwoBlogs} />)
+        const blogs = wrapper.find('ul').children()
+        expect(blogs).toHaveLength(2)
+    })
+
+    it('should show blog titles', () => {
+        const wrapper = shallow(<User.WrappedComponent user={userWithTwoBlogs} />)
+        expect(wrapper.text().includes('First')).toBe(true)
+        expect(wrapper.text().includes('Second')).toBe(true)
+    })
+
+    it('should display proper text if user has no blog posts', () => {
+        const wrapper = shallow(<User.WrappedComponent user={userWithoutBlogs} />)
+        expect(wrapper.text().includes('No added blogs')).toBe(true)
+    })
+})

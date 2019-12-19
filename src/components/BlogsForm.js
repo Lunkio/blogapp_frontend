@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import CreateForm from './CreateForm'
 import { connect } from 'react-redux'
 import { Table, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const BlogsForm = (props) => {
+    //console.log(props)
     const [blogFormVisible, setBlogFormVisible] = useState(false)
     
     const hideWhenVisible = { display: blogFormVisible ? 'none' : '' }
@@ -17,11 +19,11 @@ const BlogsForm = (props) => {
             <div style={hideWhenVisible}>
                 <h1>Welcome to Blog App</h1>
                 <p>Here you can add your own blogs, or read other people's blog posts</p>
-                <Button primary onClick={() => setBlogFormVisible(true)}>Create new blog</Button>
+                <Button primary className='create-button' onClick={() => setBlogFormVisible(true)}>Create new blog</Button>
             </div>
 
             <div style={showWhenVisible}>
-                <h2>Create new</h2>
+                <h2 className='create-new-header'>Create new</h2>
                 <CreateForm blogs={props.blogs} user={props.user} />
                 <Button style={{'marginTop': '1rem'}} negative onClick={() => setBlogFormVisible(false)}>Close</Button>
                 <br/>
@@ -37,8 +39,8 @@ const BlogsForm = (props) => {
                 <Table.Body>
                     {props.blogs.map(blog =>
                         <Table.Row key={blog.id}>
-                            <Table.Cell><props.Link to={`/blogs/${blog.id}`}>{blog.title}</props.Link></Table.Cell>
-                            <Table.Cell>{blog.author}</Table.Cell>
+                            <Table.Cell><Link to={`/blogs/${blog.id}`} className='blog-title'>{blog.title}</Link></Table.Cell>
+                            <Table.Cell><p className='blog-author'>{blog.author}</p></Table.Cell>
                         </Table.Row>
                     )}
                 </Table.Body>

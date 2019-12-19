@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import LoginForm from './components/LoginForm'
 import BlogsForm from './components/BlogsForm'
-import usersService from './services/users'
+// import usersService from './services/users'
 import Users from './components/Users'
 import User from './components/User'
 import SingleBlog from './components/SingleBlog'
 import { connect } from 'react-redux'
 import { initializeBlogs } from './reducers/blogReducer'
+import { initializeUsers } from './reducers/usersReducer'
 import { setNotification } from './reducers/notificationReducer'
 import { addUser, removeUser } from './reducers/userReducer'
 import {
@@ -16,18 +17,19 @@ import {
 import { Container, Message, Menu, Button } from 'semantic-ui-react'
 
 const App = (props) => {
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
   const [activeItem, setActiveItem] = useState('blogs')
 
-  useEffect(() => {
-      usersService.getAll()
-          .then(allUsers => {
-              setUsers(allUsers)
-          })
-  }, [])
+  // useEffect(() => {
+  //     usersService.getAll()
+  //         .then(allUsers => {
+  //             setUsers(allUsers)
+  //         })
+  // }, [])
 
   useEffect(() => {
     props.initializeBlogs()
+    props.initializeUsers()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -46,9 +48,14 @@ const App = (props) => {
   }
 
   const userById = (id) => {
-    let foundUser = users.find(user => user.id === id)
+    let foundUser = props.users.find(user => user.id === id)
     return foundUser
   }
+
+  // const userById = (id) => {
+  //   let foundUser = users.find(user => user.id === id)
+  //   return foundUser
+  // }
 
   const blogById = (id) => {
     let foundBlog = props.blogs.find(blog => blog.id === id)
@@ -85,8 +92,9 @@ const App = (props) => {
             </Menu.Item>
           </Menu>
           <div>
-            <Route exact path='/' render={() => <BlogsForm Link={Link} />} />
-            <Route exact path='/users' render={() => <Users users={users} Link={Link} /> } />
+            <Route exact path='/' render={() => <BlogsForm />} />
+            <Route exact path='/users' render={() => <Users /> } />
+            {/* <Route exact path='/users' render={() => <Users users={users} /> } /> */}
             <Route exact path='/users/:id' render={({ match }) =>
               <User user={userById(match.params.id)}/>
             } />
@@ -104,13 +112,15 @@ const mapStateToProps = (state) => {
   return {
     notifications: state.notifications,
     blogs: state.blogs,
-    user: state.user
+    user: state.user,
+    users: state.users
   }
 }
 
 const mapDispatchToProps = {
   setNotification,
   initializeBlogs,
+  initializeUsers,
   addUser,
   removeUser
 }

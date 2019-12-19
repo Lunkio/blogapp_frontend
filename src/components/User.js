@@ -3,12 +3,10 @@ import { Button, Icon } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 const User = (props) => {
-    
+    //console.log(props.user)
     if (props.user === undefined) {
         return null
     }
-
-    //console.log(props.user)
 
     const numberOfBlogs = props.user.blogs.map(blog => blog.title)
 
@@ -21,7 +19,7 @@ const User = (props) => {
                 </Button.Content>
             </Button>
             <h2>{props.user.name}</h2>
-            <p><b>Added Blogs:</b></p>
+            <p style={{'fontWeight': 'bold'}}>Added Blogs:</p>
             <ul>
                 {props.user.blogs.map(blog =>
                     <li key={blog.id}>{blog.title}</li>    

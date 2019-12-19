@@ -1,7 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Table } from 'semantic-ui-react'
-
+import { Link } from 'react-router-dom'
+ 
 const Users = (props) => {
+    //console.log(props.users)
     return (
         <div>
             <Table definition>
@@ -16,10 +19,10 @@ const Users = (props) => {
                     {props.users.map(user =>
                         <Table.Row key={user.id}>
                             <Table.Cell>
-                                <props.Link className='classTest' to={`/users/${user.id}`}>{user.name}</props.Link>
+                                <Link className='user-name' to={`/users/${user.id}`}>{user.name}</Link>
                             </Table.Cell>
                             <Table.Cell>
-                                {user.blogs.length}
+                                <p className='blog-amount-test'>{user.blogs.length}</p>
                             </Table.Cell>
                         </Table.Row>
                     )}
@@ -29,4 +32,12 @@ const Users = (props) => {
     )
 }
 
-export default Users
+const mapStateToProps = (state) => {
+    return {
+      users: state.users
+    }
+  }
+  
+  export default connect( 
+    mapStateToProps
+  )(Users)

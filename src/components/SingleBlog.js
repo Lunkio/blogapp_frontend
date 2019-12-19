@@ -6,7 +6,8 @@ import { addLike, addComment, removeBlog } from '../reducers/blogReducer'
 import { compose } from 'redux'
 
 const SingleBlog = (props) => {
-    console.log('props.blog', props.blog)
+    //console.log('props.blog', props.blog)
+    //console.log('props.user', props.user)
 
     if (props.blog === undefined) {
         return null
@@ -76,7 +77,7 @@ const SingleBlog = (props) => {
             <p style={{'marginTop': '2rem'}}>
                 added by {props.blog.user.name}
                 <span style={checkUser(props.blog)}>
-                    <Button basic color='red' onClick={() => removeBlog(props.blog)}>Remove</Button>
+                    <Button className='remove-button' basic color='red' onClick={() => removeBlog(props.blog)}>Remove</Button>
                 </span>
             </p>
             <div>
@@ -89,7 +90,7 @@ const SingleBlog = (props) => {
                     {props.blog.comments.map((comment, index) =>
                         <List.Item key={index}>
                             <List.Icon name='users' />
-                            <List.Content>{comment}</List.Content>
+                            <List.Content className='comment'>{comment}</List.Content>
                         </List.Item>
                     )}
                 </List>
@@ -109,7 +110,7 @@ const mapDispatchToProps = {
     addLike,
     addComment,
     removeBlog
-    }
+}
 
 export default compose(
     withRouter,
