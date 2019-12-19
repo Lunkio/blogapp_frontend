@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import LoginForm from './components/LoginForm'
 import BlogsForm from './components/BlogsForm'
-// import usersService from './services/users'
 import Users from './components/Users'
 import User from './components/User'
 import SingleBlog from './components/SingleBlog'
@@ -17,15 +16,7 @@ import {
 import { Container, Message, Menu, Button } from 'semantic-ui-react'
 
 const App = (props) => {
-  // const [users, setUsers] = useState([])
   const [activeItem, setActiveItem] = useState('blogs')
-
-  // useEffect(() => {
-  //     usersService.getAll()
-  //         .then(allUsers => {
-  //             setUsers(allUsers)
-  //         })
-  // }, [])
 
   useEffect(() => {
     props.initializeBlogs()
@@ -51,11 +42,6 @@ const App = (props) => {
     let foundUser = props.users.find(user => user.id === id)
     return foundUser
   }
-
-  // const userById = (id) => {
-  //   let foundUser = users.find(user => user.id === id)
-  //   return foundUser
-  // }
 
   const blogById = (id) => {
     let foundBlog = props.blogs.find(blog => blog.id === id)
@@ -94,7 +80,6 @@ const App = (props) => {
           <div>
             <Route exact path='/' render={() => <BlogsForm />} />
             <Route exact path='/users' render={() => <Users /> } />
-            {/* <Route exact path='/users' render={() => <Users users={users} /> } /> */}
             <Route exact path='/users/:id' render={({ match }) =>
               <User user={userById(match.params.id)}/>
             } />
