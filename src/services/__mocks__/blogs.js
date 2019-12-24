@@ -1,4 +1,4 @@
-const blogs = [
+export const blogs = [
     {
         id: "5a451df7571c224a31b5c8ce",
         title: "Kovakoodi1",

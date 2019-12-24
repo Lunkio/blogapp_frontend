@@ -52,3 +52,31 @@ export const userWithTwoBlogs = {
     name: 'Jest Enzyme',
     username: 'tester'
 }
+
+export const users = [
+    {
+        blogs: [],
+        id: '5432',
+        name: 'No Blogs',
+        username: 'tester2'
+    },
+    {
+        blogs: [
+            {
+                title: 'First',
+                author: 'Author',
+                url: 'url',
+                id: '1234',
+            },
+            {
+                title: 'Second',
+                author: 'Another Author',
+                url: 'url',
+                id: '2345'
+            }
+        ],
+        id: '4321',
+        name: 'Jest Enzyme',
+        username: 'tester'
+    }
+]
